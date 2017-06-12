@@ -1,25 +1,34 @@
 
 <?php
 
-namespace Chris\WPNounce;
+namespace Christian\WPNonce;
 
 /**
- * WP_Nounce Implementation
+ * @package Christian\WPNonce
+ * @version 1.0
  * 
  */
-class Nounce {
+class Nonce {
 
     /**
      * attributes
      * 
      */
-    protected $action;
-    protected $name;
-    protected $time;
+    protected $action;          //String default '-1'
+    protected $name;            //String default '_wpnonce'
+    protected $nonce;
     protected $actionurl = '';
     protected $referer = 'false';
     protected $echo = ' false';
-
+    
+    /**
+     * 
+     * Getter and Setter for the attributes
+     * 
+     * @param string $action Default with constructor = '-1'
+     * @param string $name Default with constructor = '_wpnonce'
+     */
+    
     public function set_action( $action ) {
         $this->action = $action;
     }
@@ -36,14 +45,14 @@ class Nounce {
         return $this->name;
     }
 
-    public function set_time( $time ) {
-        $this->time = $time;
+    public function set_nonce( $nonce ) {
+        $this->nonce = $nonce;
     }
 
-    public function get_time() {
-        return $this->time;
+    public function get_nonce() {
+        return $this->nonce;
     }
-
+    
     public function set_actionurl( $actionurl ) {
         $this->url = trim( $actionurl );
     }
@@ -68,25 +77,47 @@ class Nounce {
         return $this->echo;
     }
 
+    /**
+     * 
+     * @param type $action
+     * @param type $name
+     */
+    
+    
     public function __construct( $action = '-1', $name = '_wpnonce') {
         $this->set_action( $action );
         $this->set_name( $name );
     }
+    
+    /**
+     * 
+     * @return type
+     */
 
     public function nonce_url() {
         return wp_nonce_url( $this->get_actionurl(), $this->get_action(), $this->get_name() );
     }
-
+    
+    /**
+     * 
+     * @return type
+     */
+    
     public function nonce_field() {
         return wp_nonce_field( $this->get_action(), $this->get_name(), $this->get_referer(), $this->get_echo() );
     }
 
     public function value() {
-        return wp_create_nonce( $this->get_action() );
+        $nonce = wp_create_nonce( $this->get_action() );
+        $this->set_nonce( $nonce );
     }
 
     public function ays() {
         return wp_nonce_ays( $this->get_action() );
+    }
+    
+    public function verify() {
+        return wp_verify_nonce( $this->get_nonce(), $this->get_action() );
     }
 
 }
