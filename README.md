@@ -14,7 +14,7 @@ WordPress Nonce object.
 The best way to use this package is through Composer:
 
 ```BASH
-$ composer require christian/wp_nonce -dev-master
+$ composer require christian/wp_nonce
 ```
 
 ### Requirements
