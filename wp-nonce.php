@@ -25,7 +25,6 @@ class Nonce {
     
     
     /**
-     * 
      * @param type $action (string)
      */
     public function set_action( $action ) {
@@ -37,7 +36,6 @@ class Nonce {
     }
 
     /**
-     * 
      * @param type $name (string)
      */
     public function set_name( $name ) {
@@ -49,7 +47,6 @@ class Nonce {
     }
     
     /**
-     * 
      * @param type $actionurl (string)
      */
     public function set_actionurl( $actionurl ) {
@@ -61,7 +58,6 @@ class Nonce {
     }
 
     /**
-     * 
      * @param type $referer (string)
      */
     public function set_referer( $referer ) {
@@ -73,7 +69,6 @@ class Nonce {
     }
 
     /**
-     * 
      * @param type $echo (string)
      */
     public function set_echo( $echo ) {
@@ -85,7 +80,6 @@ class Nonce {
     }
     
     /**
-     * 
      * @param type $query_arg (string)
      */
     public function set_query_arg( $query_arg ) {
@@ -96,8 +90,7 @@ class Nonce {
         return $this->query_arg;
     }
     
-    /**
-     * 
+    /** 
      * @param type $die (string)
      */
     public function set_die( $die ) {
